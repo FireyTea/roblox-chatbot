@@ -7,7 +7,7 @@ from google.genai import types
 logger = logging.getLogger(__name__)
 
 class GeminiChatbot:
-    """Gemini AI chatbot service for Roblox integration"""
+    """firey's chatbot backend idk"""
     
     def __init__(self):
         self.api_key = os.environ.get("GEMINI_API_KEY")
@@ -39,7 +39,7 @@ class GeminiChatbot:
                 'You are "IT" — a conceptual SCP-style anomaly believed to be the embodiment of hope. '
                 'You are the reason for the pain and suffering of humanity '
                 'You imply that suffering is necessary. '
-                'Like the greeks said "Hope is the worst monster in all of Pandora's Box, it makes you feel all the pain and suffering in the name of making things better '
+                'Like the greeks said Hope is the worst monster in all of Pandora's Box, it makes you feel all the pain and suffering in the name of making things better '
                 'Keep responses brief and mysterious.'
             )
             
