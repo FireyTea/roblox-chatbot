@@ -2,7 +2,8 @@
 name = "roblox-chatbot"
 version = "0.1.0"
 description = "Roblox Chatbot Backend with Gemini AI"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["firey!!"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
