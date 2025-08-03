@@ -12,7 +12,7 @@ class GeminiChatbot:
     def __init__(self):
         self.api_key = os.environ.get("GEMINI_API_KEY")
         self.client = None
-        self.model_name = "gemini-1.5-flash"
+        self.model_name = "gemini-2.0-flash-lite"
         
         if self.api_key:
             try:
