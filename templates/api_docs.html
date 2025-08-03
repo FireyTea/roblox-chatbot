@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - Roblox Chatbot</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-dark.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-robot me-2"></i>
+                Roblox Chatbot API
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-home me-1"></i>
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-list me-2"></i>
+                            Table of Contents
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <nav class="nav flex-column">
+                            <a class="nav-link" href="#overview">Overview</a>
+                            <a class="nav-link" href="#authentication">Authentication</a>
+                            <a class="nav-link" href="#endpoints">Endpoints</a>
+                            <a class="nav-link" href="#chat-endpoint">Chat Endpoint</a>
+                            <a class="nav-link" href="#rate-limiting">Rate Limiting</a>
+                            <a class="nav-link" href="#roblox-integration">Roblox Integration</a>
+                            <a class="nav-link" href="#error-handling">Error Handling</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">
+                            <i class="fas fa-book me-2"></i>
+                            API Documentation
+                        </h1>
+                        
+                        <section id="overview" class="mb-5">
+                            <h2>Overview</h2>
+                            <p>The Roblox Chatbot API provides AI-powered conversational capabilities for Roblox Studio and games. It uses Google's Gemini AI to generate contextual responses for game development questions and general assistance.</p>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Base URL:</strong> <code>https://your-domain.com</code>
+                            </div>
+                        </section>
+
+                        <section id="authentication" class="mb-5">
+                            <h2>Authentication</h2>
+                            <p>Currently, the API does not require authentication. However, it implements rate limiting based on IP address and user ID to prevent abuse.</p>
+                        </section>
+
+                        <section id="endpoints" class="mb-5">
+                            <h2>Available Endpoints</h2>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Method</th>
+                                            <th>Endpoint</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="badge bg-success">POST</span></td>
+                                            <td><code>/api/chat</code></td>
+                                            <td>Send a message to the chatbot</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge bg-primary">GET</span></td>
+                                            <td><code>/api/health</code></td>
+                                            <td>Check API health status</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="badge bg-primary">GET</span></td>
+                                            <td><code>/api/stats</code></td>
+                                            <td>Get API usage statistics</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section id="chat-endpoint" class="mb-5">
+                            <h2>Chat Endpoint</h2>
+                            
+                            <div class="card bg-dark mb-3">
+                                <div class="card-header">
+                                    <strong>POST</strong> <code>/api/chat</code>
+                                </div>
+                                <div class="card-body">
+                                    <p>Send a message to the AI chatbot and receive a contextual response.</p>
+                                    
+                                    <h5>Request Headers</h5>
+                                    <pre><code class="language-http">Content-Type: application/json</code></pre>
+                                    
+                                    <h5>Request Body</h5>
+                                    <pre><code class="language-json">{
+  "message": "How do I create a part in Roblox Studio?",
+  "userId": "player123"
+}</code></pre>
+                                    
+                                    <h5>Parameters</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Field</th>
+                                                    <th>Type</th>
+                                                    <th>Required</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><code>message</code></td>
+                                                    <td>string</td>
+                                                    <td>Yes</td>
+                                                    <td>The user's message (max 1000 characters)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>userId</code></td>
+                                                    <td>string</td>
+                                                    <td>No</td>
+                                                    <td>Unique identifier for the user (defaults to "anonymous")</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <h5>Success Response (200)</h5>
+                                    <pre><code class="language-json">{
+  "success": true,
+  "response": "To create a part in Roblox Studio, go to the Home tab and click on 'Part' in the Insert section. You can also right-click in the Workspace and select 'Insert Object' > 'Part'.",
+  "timestamp": "2025-08-03T10:30:00Z",
+  "userId": "player123"
+}</code></pre>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="rate-limiting" class="mb-5">
+                            <h2>Rate Limiting</h2>
+                            <p>The API implements rate limiting to ensure fair usage:</p>
+                            <ul>
+                                <li><strong>Limit:</strong> 10 requests per minute per user/IP combination</li>
+                                <li><strong>Reset:</strong> Rate limit window resets every 60 seconds</li>
+                                <li><strong>Response:</strong> HTTP 429 when limit exceeded</li>
+                            </ul>
+                            
+                            <div class="alert alert-warning">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                When rate limit is exceeded, wait 60 seconds before making another request.
+                            </div>
+                        </section>
+
+                        <section id="roblox-integration" class="mb-5">
+                            <h2>Roblox Studio Integration</h2>
+                            <p>Here are examples of how to integrate the chatbot API into your Roblox scripts:</p>
+                            
+                            <h5>Basic HTTP Request (ServerScript)</h5>
+                            <pre><code class="language-lua">local HttpService = game:GetService("HttpService")
+
+local function sendChatMessage(message, userId)
+    local url = "https://your-domain.com/api/chat"
+    local data = {
+        message = message,
+        userId = userId or "anonymous"
+    }
+    
+    local success, response = pcall(function()
+        return HttpService:PostAsync(url, HttpService:JSONEncode(data), Enum.HttpContentType.ApplicationJson)
+    end)
+    
+    if success then
+        local decoded = HttpService:JSONDecode(response)
+        if decoded.success then
+            return decoded.response
+        else
+            warn("Chat API Error:", decoded.message)
+            return "Sorry, I couldn't process your request."
+        end
+    else
+        warn("HTTP Request failed:", response)
+        return "Sorry, I'm having trouble connecting right now."
+    end
+end
+
+-- Usage example
+local botResponse = sendChatMessage("How do I make a script?", "Player1")
+print("Bot says:", botResponse)</code></pre>
+
+                            <h5>GUI Integration Example</h5>
+                            <pre><code class="language-lua">-- LocalScript in StarterPlayerScripts
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Create GUI (simplified example)
+local screenGui = Instance.new("ScreenGui")
+local chatFrame = Instance.new("Frame")
+local messageBox = Instance.new("TextBox")
+local sendButton = Instance.new("TextButton")
+local responseLabel = Instance.new("TextLabel")
+
+-- Setup GUI properties and layout here...
+
+sendButton.MouseButton1Click:Connect(function()
+    local message = messageBox.Text
+    if message and message ~= "" then
+        messageBox.Text = ""
+        responseLabel.Text = "Thinking..."
+        
+        -- Fire to ServerScript to make HTTP request
+        game.ReplicatedStorage.ChatRequest:FireServer(message, player.UserId)
+    end
+end)
+
+-- Listen for response from server
+game.ReplicatedStorage.ChatResponse.OnClientEvent:Connect(function(response)
+    responseLabel.Text = response
+end)</code></pre>
+                        </section>
+
+                        <section id="error-handling" class="mb-5">
+                            <h2>Error Handling</h2>
+                            <p>The API returns structured error responses to help with debugging:</p>
+                            
+                            <h5>Common Error Responses</h5>
+                            
+                            <div class="card bg-dark mb-3">
+                                <div class="card-header">
+                                    <strong>400 Bad Request</strong>
+                                </div>
+                                <div class="card-body">
+                                    <pre><code class="language-json">{
+  "success": false,
+  "error": "Missing Message",
+  "message": "The 'message' field is required and cannot be empty"
+}</code></pre>
+                                </div>
+                            </div>
+                            
+                            <div class="card bg-dark mb-3">
+                                <div class="card-header">
+                                    <strong>429 Too Many Requests</strong>
+                                </div>
+                                <div class="card-body">
+                                    <pre><code class="language-json">{
+  "success": false,
+  "error": "Rate Limit Exceeded",
+  "message": "Too many requests. Please wait 60 seconds before sending another message."
+}</code></pre>
+                                </div>
+                            </div>
+                            
+                            <div class="card bg-dark mb-3">
+                                <div class="card-header">
+                                    <strong>500 Internal Server Error</strong>
+                                </div>
+                                <div class="card-body">
+                                    <pre><code class="language-json">{
+  "success": false,
+  "error": "Internal Server Error",
+  "message": "An unexpected error occurred. Please try again later."
+}</code></pre>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

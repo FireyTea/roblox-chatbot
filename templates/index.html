@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Chatbot API - Testing Interface</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-robot me-2"></i>
+                Roblox Chatbot API
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/docs">
+                    <i class="fas fa-book me-1"></i>
+                    API Docs
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-comments me-2"></i>
+                            Chat Testing Interface
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="chat-messages" class="mb-3" style="height: 400px; overflow-y: auto; border: 1px solid var(--bs-border-color); border-radius: 0.375rem; padding: 1rem;">
+                            <div class="text-muted text-center mt-5">
+                                <i class="fas fa-comment-dots fa-2x mb-3"></i>
+                                <p>Start a conversation to test the chatbot API</p>
+                            </div>
+                        </div>
+                        
+                        <form id="chat-form">
+                            <div class="row g-2">
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" id="user-id" placeholder="User ID" value="test-user">
+                                </div>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="message-input" placeholder="Type your message..." required>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="submit" class="btn btn-primary w-100" id="send-btn">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-chart-line me-2"></i>
+                            API Status
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div id="api-status">
+                            <div class="text-center">
+                                <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                                Checking status...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Quick Test
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-secondary btn-sm" onclick="sendTestMessage('Hello, how can you help me with Roblox scripting?')">
+                                Test Greeting
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="sendTestMessage('How do I create a script in Roblox Studio?')">
+                                Test Scripting Question
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="sendTestMessage('What is a LocalScript vs ServerScript?')">
+                                Test Technical Question
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-code me-2"></i>
+                            Example Usage
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <small class="text-muted">
+                            <strong>Endpoint:</strong> POST /api/chat<br>
+                            <strong>Content-Type:</strong> application/json<br><br>
+                            <strong>Request Body:</strong>
+                            <pre class="bg-dark p-2 rounded mt-2"><code>{
+  "message": "Hello!",
+  "userId": "player123"
+}</code></pre>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/api_test.js"></script>
+</body>
+</html>
